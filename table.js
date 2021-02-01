@@ -5,7 +5,7 @@ async function teste() {
   try {
     const response = await fetch('http://localhost:1234/')
     data = await response.json()
-    show(data.results.forecast.slice(0, 7))
+    show(data.forecast.slice(0, 7))
   } catch (error) {
     console.error(error)
   }
@@ -13,7 +13,7 @@ async function teste() {
 teste()
 // FUNCAO RESPONSAVEL POR RENDERIZAR A TABELA NA VIEW
 function show(data) {
-  console.log(data)
+  // console.log(data)
   var inserir = data.map(function (item, indice) {
 
     return `<tr>
@@ -42,14 +42,14 @@ $(document).ready(function () {
       $tbody.find('.no-result').remove();
       $tbody.find('tr').show();
     }
-  });
-
+  }); 
+  //DROPDOWN ONDE SELECIONA 7 DIAS COMO DEFAULT 
   $("#filtro").on("change", function () {
     document.querySelector("#tbPodio tbody").innerHTML = "";
     if (this.value == "7") {
-      show(data.results.forecast.slice(0, 7));
+      show(data.forecast.slice(0, 7));
     } else if (this.value == "all") {
-      show(data.results.forecast);
+      show(data.forecast);
     }
   })
 
